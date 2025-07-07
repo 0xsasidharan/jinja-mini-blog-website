@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+    <header class="container mx-auto flex justify-between bg-green-300 mb-6">
+
+
+        <div class="flex items-center w-1/2 space-x-4">
+            <img class="h-24 w-16 pl-3" src="/static/logo.svg" alt="The MicroBlog Logo">
+            <h1>MicroBlog</h1>
+        </div>
+
+        <div class="flex items-center w-1/2 justify-around ">
+            <a href="#">Recent</a>
+            <a href="">Calendar</a>
+        </div>
+
+    </header>
+
+    <main class="container mx-auto bg-green-300 flex flex-col items-center  ">
+        <section >
+            <h1 class="text-xl font-bold mt-3 ">Add New Entry :</h1>
+            <form class="form  bg-pink-400 mb-8 w-72 border-2 border-black m-4 p-1 rounded-md" action="/" method="POST">
+                    <textarea class="w-full h-28 mb-2 rounded-md" name="content" id="entry"></textarea>
+
+                <div class="flex justify-end">
+                    <button class="bg-blue-400 p-1 px-6 rounded-3xl text-white font-bold hover:shadow-lg" type="submit">Submit</button>
+
+                </div>
+            </form>
+
+        </section>
+        <section class="bg-pink-400 w-72 border-2 border-black space-y-4 rounded-md h-auto pb-4 mb-6 ">
+            <h1 class="text-3xl font-bold text-center mb-6">Recent Posts</h1>
+            
+            {%for entry in entries%}
+            
+            <article class="border-2 border-pink-800 m-2 rounded-md px-2">
+                <div class="flex justify-between  font-sans font-bold mb-2">
+                    <h2>{{entry[0] | truncate(10,true)}}</h2>
+                    <time class="font-thin"> - {{entry[1]}} </time>
+
+                </div>
+                <p class="text-justify">{{entry[0]}}</p>
+            </article>
+            {%endfor%}
+        </section>
+    </main>
+
+</body>
+
+</html>
+
+
+
